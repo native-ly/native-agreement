@@ -1,4 +1,4 @@
-# [native-agreement](https://github.com/native-ly/native-agreement)
+# [native-agreement](https://github.com/native-ly/native-agreement) (WIP)
 
 [![NPM version](https://img.shields.io/npm/v/native-agreement?style=flat-square)](https://www.npmjs.com/package/native-agreement)
 [![NPM downloads](https://img.shields.io/npm/dm/native-agreement?style=flat-square)](https://www.npmjs.com/package/native-agreement)
@@ -8,6 +8,8 @@
 [![Travis](https://img.shields.io/travis/native-ly/native-agreement/master?style=flat-square)](https://travis-ci.org/native-ly/native-agreement)
 
 ## About
+
+React Native component that allows display different footer based on scroll position of content section e.g.: if you want to display agreement you will be able to render different button or disable it until user read (scroll to bottom) section with the contract.
 
 ### Alternatives
 
@@ -26,6 +28,49 @@ $ yarn add native-agreement
 ```
 
 ## Options
+
+Props extends ViewProps
+
+| Name             | Type                  | Description                                            |
+| ---------------- | --------------------- | ------------------------------------------------------ |
+| renderHeader     | () => React.ReactNode | Function to render component inside the header         |
+| renderContent    | () => React.ReactNode | Function to render component inside the scroll section |
+| renderFooter     | () => React.ReactNode | Function to render component inside the footer         |
+| headerComponent  | React.ReactNode       | Component to be rendered inside the header             |
+| contentComponent | React.ReactNode       | Component to be rendered inside the scroll section     |
+| headerProps      | ViewProps             | Props for the header                                   |
+| contentProps     | ScrollViewProps       | Props for the scroll section                           |
+| footerProps      | ViewProps             | Props for the footer                                   |
+
+## Example
+
+```js
+import React, { useState } from 'react'
+import { View, Text } from 'react-native'
+import NativeAgreement from 'native-agreement'
+
+const App = () => {
+  const [agreed, setAgreed] = useState(false)
+
+  const headerRenderer = () => (
+    <View>
+      <Text>Agreement</Text>
+    </View>
+  )
+
+  return (
+    <NativeAgreement
+      renderHeader={headerRenderer} // TODO
+      contentComponent={<Text>Very long text here...</Text>}
+      renderFooter={(read) => (
+        <Button onPress={() => setAgreed(true)} disabled={!read}>
+          Agree
+        </Button>
+      )}
+    />
+  )
+}
+```
 
 ## License
 
