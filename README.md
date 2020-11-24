@@ -31,6 +31,8 @@ $ yarn add native-agreement
 
 Props extends ViewProps
 
+// TODO default value, required
+
 | Name             | Type                  | Description                                            |
 | ---------------- | --------------------- | ------------------------------------------------------ |
 | renderHeader     | () => React.ReactNode | Function to render component inside the header         |
@@ -60,7 +62,7 @@ const App = () => {
 
   return (
     <NativeAgreement
-      renderHeader={headerRenderer} // TODO
+      renderHeader={headerRenderer}
       contentComponent={<Text>Very long text here...</Text>}
       renderFooter={(read) => (
         <Button onPress={() => setAgreed(true)} disabled={!read}>
