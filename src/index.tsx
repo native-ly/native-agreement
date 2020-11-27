@@ -9,8 +9,11 @@ import {
 
 interface Props extends ViewProps {
   renderHeader?: () => React.ReactNode
-  renderContent: () => React.ReactNode
+  renderContent?: () => React.ReactNode // TODO required
   renderFooter: (read: boolean) => React.ReactNode
+  readonly headerComponent?: React.ReactNode
+  readonly contentComponent?: React.ReactNode
+  // readonly footerComponent?: React.ReactNode
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
@@ -28,6 +31,9 @@ const Agreement = ({
   renderHeader,
   renderContent,
   renderFooter,
+  headerComponent,
+  contentComponent,
+  // footerComponent,
   headerProps = {},
   contentProps = {},
   footerProps = {},
@@ -42,6 +48,7 @@ const Agreement = ({
       {renderHeader && <View {...headerProps}>{renderHeader()}</View>}
 
       <ScrollView
+        // testID="scroll-view"
         onScroll={(e) => {
           if (isBottomReached(e.nativeEvent)) {
             setRead(true)
