@@ -31,8 +31,6 @@ $ yarn add native-agreement
 
 Props extends ViewProps
 
-// TODO default value, required
-
 | Name             | Type                  | Description                                            |
 | ---------------- | --------------------- | ------------------------------------------------------ |
 | renderHeader     | () => React.ReactNode | Function to render component inside the header         |
