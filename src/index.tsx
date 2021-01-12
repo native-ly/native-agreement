@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
@@ -41,8 +41,6 @@ const Agreement = ({
 
   const { onScroll, ...contentRest } = contentProps
 
-  // const ref = useRef<ScrollView>(null)
-
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isBottomReached(e.nativeEvent)) {
       setRead(true)
@@ -51,24 +49,11 @@ const Agreement = ({
     onScroll?.(e)
   }
 
-  // const handleContentSizeChange = (_: number, h: number) => {
-  // console.log(ref.current)
-
-  // setRead(h < ref?.current)s
-  // }
-
   return (
     <View {...props}>
       {renderHeader && <View {...headerProps}>{renderHeader(read)}</View>}
-      {/* {renderHeader && <View {...headerProps}>{renderHeader()}</View>} */}
 
-      <ScrollView
-        // testID="scroll-view"
-        // ref={ref}
-        onScroll={handleScroll}
-        // onContentSizeChange={handleContentSizeChange}
-        {...contentRest}
-      >
+      <ScrollView onScroll={handleScroll} {...contentRest}>
         {renderContent?.(read) || contentComponent}
       </ScrollView>
 
