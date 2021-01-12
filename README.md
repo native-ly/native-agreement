@@ -31,16 +31,16 @@ $ yarn add native-agreement
 
 Props extends ViewProps
 
-| Name             | Type                  | Description                                            |
-| ---------------- | --------------------- | ------------------------------------------------------ |
-| renderHeader     | () => React.ReactNode | Function to render component inside the header         |
-| renderContent    | () => React.ReactNode | Function to render component inside the scroll section |
-| renderFooter     | () => React.ReactNode | Function to render component inside the footer         |
-| headerComponent  | React.ReactNode       | Component to be rendered inside the header             |
-| contentComponent | React.ReactNode       | Component to be rendered inside the scroll section     |
-| headerProps      | ViewProps             | Props for the header                                   |
-| contentProps     | ScrollViewProps       | Props for the scroll section                           |
-| footerProps      | ViewProps             | Props for the footer                                   |
+| Name             | Type                               | Description                                            |
+| ---------------- | ---------------------------------- | ------------------------------------------------------ |
+| renderHeader     | (read: boolean) => React.ReactNode | Function to render component inside the header         |
+| renderContent    | (read: boolean) => React.ReactNode | Function to render component inside the scroll section |
+| renderFooter     | (read: boolean) => React.ReactNode | Function to render component inside the footer         |
+| headerComponent  | React.ReactNode                    | Component to be rendered inside the header             |
+| contentComponent | React.ReactNode                    | Component to be rendered inside the scroll section     |
+| headerProps      | ViewProps                          | Props for the header                                   |
+| contentProps     | ScrollViewProps                    | Props for the scroll section                           |
+| footerProps      | ViewProps                          | Props for the footer                                   |
 
 ## Example
 
