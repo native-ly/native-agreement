@@ -1,19 +1,18 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
   View,
   ScrollView,
   NativeScrollEvent,
+  NativeSyntheticEvent,
 } from 'react-native'
 
+import type { HeaderType } from './types/HeaderType'
+import type { ContentType } from './types/ContentType'
+
 interface Props extends ViewProps {
-  renderHeader?: () => React.ReactNode
-  renderContent?: () => React.ReactNode // TODO required
   renderFooter: (read: boolean) => React.ReactNode
-  readonly headerComponent?: React.ReactNode
-  readonly contentComponent?: React.ReactNode
-  // readonly footerComponent?: React.ReactNode
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
@@ -33,32 +32,44 @@ const Agreement = ({
   renderFooter,
   headerComponent,
   contentComponent,
-  // footerComponent,
   headerProps = {},
   contentProps = {},
   footerProps = {},
   ...props
-}: Props) => {
+}: Props & HeaderType & ContentType) => {
   const [read, setRead] = useState(false)
 
   const { onScroll, ...contentRest } = contentProps
 
+  // const ref = useRef<ScrollView>(null)
+
+  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
+    if (isBottomReached(e.nativeEvent)) {
+      setRead(true)
+    }
+
+    onScroll?.(e)
+  }
+
+  // const handleContentSizeChange = (_: number, h: number) => {
+  // console.log(ref.current)
+
+  // setRead(h < ref?.current)s
+  // }
+
   return (
     <View {...props}>
-      {renderHeader && <View {...headerProps}>{renderHeader()}</View>}
+      {renderHeader && <View {...headerProps}>{renderHeader(read)}</View>}
+      {/* {renderHeader && <View {...headerProps}>{renderHeader()}</View>} */}
 
       <ScrollView
         // testID="scroll-view"
-        onScroll={(e) => {
-          if (isBottomReached(e.nativeEvent)) {
-            setRead(true)
-          }
-
-          onScroll?.(e)
-        }}
+        // ref={ref}
+        onScroll={handleScroll}
+        // onContentSizeChange={handleContentSizeChange}
         {...contentRest}
       >
-        {renderContent()}
+        {renderContent?.(read) || contentComponent}
       </ScrollView>
 
       <View {...footerProps}>{renderFooter(read)}</View>
