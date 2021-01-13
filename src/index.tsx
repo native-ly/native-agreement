@@ -41,7 +41,7 @@ const Agreement = ({
 
   const { onScroll, ...contentRest } = contentProps
 
-  // const ref = useRef<ScrollView>(null)
+  const ref = useRef<ScrollView>(null)
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isBottomReached(e.nativeEvent)) {
@@ -51,22 +51,23 @@ const Agreement = ({
     onScroll?.(e)
   }
 
-  // const handleContentSizeChange = (_: number, h: number) => {
-  // console.log(ref.current)
+  const handleContentSizeChange = (_: number, h: number) => {
+    console.log(ref.current)
 
-  // setRead(h < ref?.current)s
-  // }
+    if (ref.current) {
+      // setRead(h < ref.current)
+    }
+  }
 
   return (
     <View {...props}>
       {renderHeader && <View {...headerProps}>{renderHeader(read)}</View>}
-      {/* {renderHeader && <View {...headerProps}>{renderHeader()}</View>} */}
 
       <ScrollView
         // testID="scroll-view"
-        // ref={ref}
+        ref={ref}
         onScroll={handleScroll}
-        // onContentSizeChange={handleContentSizeChange}
+        onContentSizeChange={handleContentSizeChange}
         {...contentRest}
       >
         {renderContent?.(read) || contentComponent}
