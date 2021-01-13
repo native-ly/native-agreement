@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
@@ -6,6 +6,7 @@ import {
   ScrollView,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  LayoutChangeEvent,
 } from 'react-native'
 
 import type { HeaderType } from './types/HeaderType'
@@ -39,9 +40,14 @@ const Agreement = ({
 }: Props & HeaderType & ContentType) => {
   const [read, setRead] = useState(false)
 
-  const { onScroll, ...contentRest } = contentProps
+  const [wrapperHeight, setWrapperHeight] = useState(0)
 
-  const ref = useRef<ScrollView>(null)
+  const {
+    onScroll,
+    onLayout,
+    onContentSizeChange,
+    ...contentRest
+  } = contentProps
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
     if (isBottomReached(e.nativeEvent)) {
@@ -51,12 +57,18 @@ const Agreement = ({
     onScroll?.(e)
   }
 
-  const handleContentSizeChange = (_: number, h: number) => {
-    console.log(ref.current)
+  const handleLayout = (e: LayoutChangeEvent) => {
+    const { height } = e.nativeEvent.layout
 
-    if (ref.current) {
-      // setRead(h < ref.current)
-    }
+    setWrapperHeight(height)
+
+    onLayout?.(e)
+  }
+
+  const handleContentSizeChange = (w: number, h: number) => {
+    setRead(h < wrapperHeight)
+
+    onContentSizeChange?.(w, h)
   }
 
   return (
@@ -65,7 +77,7 @@ const Agreement = ({
 
       <ScrollView
         // testID="scroll-view"
-        ref={ref}
+        onLayout={handleLayout}
         onScroll={handleScroll}
         onContentSizeChange={handleContentSizeChange}
         {...contentRest}
