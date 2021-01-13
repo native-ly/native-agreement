@@ -76,7 +76,6 @@ const Agreement = ({
       {renderHeader && <View {...headerProps}>{renderHeader(read)}</View>}
 
       <ScrollView
-        // testID="scroll-view"
         onLayout={handleLayout}
         onScroll={handleScroll}
         onContentSizeChange={handleContentSizeChange}
