@@ -1,4 +1,4 @@
-# [native-agreement](https://github.com/native-ly/native-agreement) (WIP)
+# [native-agreement](https://github.com/native-ly/native-agreement)
 
 [![NPM version](https://img.shields.io/npm/v/native-agreement?style=flat-square)](https://www.npmjs.com/package/native-agreement)
 [![NPM downloads](https://img.shields.io/npm/dm/native-agreement?style=flat-square)](https://www.npmjs.com/package/native-agreement)
@@ -10,8 +10,6 @@
 ## About
 
 React Native component that allows display different footer based on scroll position of content section e.g.: if you want to display agreement you will be able to render different button or disable it until user read (scroll to bottom) section with the contract.
-
-### Alternatives
 
 ## How to Install
 
