@@ -12,7 +12,7 @@ import type { HeaderType } from './types/HeaderType'
 import type { ContentType } from './types/ContentType'
 
 interface Props extends ViewProps {
-  renderFooter: (read: boolean) => React.ReactNode
+  renderFooter?: (read: boolean) => React.ReactNode
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
@@ -51,13 +51,15 @@ const Agreement = ({
 
   return (
     <View {...props}>
-      {renderHeader && <View {...headerProps}>{renderHeader(read)}</View>}
+      {(renderHeader || headerComponent) && (
+        <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
+      )}
 
       <ScrollView onScroll={handleScroll} {...contentRest}>
         {renderContent?.(read) || contentComponent}
       </ScrollView>
 
-      <View {...footerProps}>{renderFooter(read)}</View>
+      {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}
     </View>
   )
 }
