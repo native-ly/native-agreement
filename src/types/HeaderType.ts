@@ -2,11 +2,11 @@ import React from 'react'
 
 type RenderHeaderType = {
   renderHeader: (read: boolean) => React.ReactNode
-  readonly headerComponent: undefined
+  readonly headerComponent?: React.ReactNode
 }
 
 type HeaderComponentType = {
-  renderHeader: undefined
+  renderHeader?: (read: boolean) => React.ReactNode
   readonly headerComponent: React.ReactNode
 }
 
