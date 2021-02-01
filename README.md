@@ -39,6 +39,7 @@ Props extends ViewProps
 | headerProps      | ViewProps                          | Props for the header                                   |
 | contentProps     | ScrollViewProps                    | Props for the scroll section                           |
 | footerProps      | ViewProps                          | Props for the footer                                   |
+| isRead           | boolean                            | Set and reset read value from outside the component    |
 
 ## Example
 
