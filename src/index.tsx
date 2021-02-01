@@ -44,7 +44,7 @@ const Agreement = ({
   const { onScroll, ...contentRest } = contentProps
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (isBottomReached(e.nativeEvent)) {
+    if (!read && isBottomReached(e.nativeEvent)) {
       setRead(true)
 
       onRead?.()
