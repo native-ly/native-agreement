@@ -2,11 +2,11 @@ import React from 'react'
 
 type RenderContentType = {
   renderContent: (read: boolean) => React.ReactNode
-  readonly contentComponent: undefined
+  readonly contentComponent?: React.ReactNode
 }
 
 type ContentComponentType = {
-  renderContent: undefined
+  renderContent?: (read: boolean) => React.ReactNode
   readonly contentComponent: React.ReactNode
 }
 
