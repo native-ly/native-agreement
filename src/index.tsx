@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
@@ -16,6 +16,7 @@ interface Props extends ViewProps {
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
+  readonly isRead?: boolean
 }
 
 const isBottomReached = ({
@@ -35,9 +36,14 @@ const Agreement = ({
   headerProps = {},
   contentProps = {},
   footerProps = {},
+  isRead = false,
   ...props
 }: Props & HeaderType & ContentType) => {
-  const [read, setRead] = useState(false)
+  const [read, setRead] = useState(isRead)
+
+  useEffect(() => {
+    setRead(isRead)
+  }, [isRead])
 
   const { onScroll, ...contentRest } = contentProps
 
