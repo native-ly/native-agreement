@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
@@ -16,6 +16,9 @@ interface Props extends ViewProps {
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
+  readonly isRead?: boolean
+  onReadChange?: (read: boolean) => void
+  onRead?: () => void
 }
 
 const isBottomReached = ({
@@ -37,16 +40,29 @@ const Agreement = ({
   headerProps = {},
   contentProps = {},
   footerProps = {},
+  isRead = false,
+  onReadChange,
+  onRead,
   ...props
 }: Props & HeaderType & ContentType) => {
-  const [read, setRead] = useState(false)
+  const [read, setRead] = useState(isRead)
+
+  useEffect(() => {
+    setRead(isRead)
+  }, [isRead])
+
+  useEffect(() => {
+    onReadChange?.(read)
+  }, [read])
 
   const { onScroll, ...contentRest } = contentProps
 
   const handleScroll = useCallback<HandleScrollCallback>(
     (e) => {
-      if (isBottomReached(e.nativeEvent)) {
+      if (!read && isBottomReached(e.nativeEvent)) {
         setRead(true)
+
+        onRead?.()
       }
 
       onScroll?.(e)
