@@ -39,6 +39,7 @@ Props extends ViewProps
 | headerProps      | ViewProps                          | Props for the header                                   |
 | contentProps     | ScrollViewProps                    | Props for the scroll section                           |
 | footerProps      | ViewProps                          | Props for the footer                                   |
+| onReadChange     | (read: boolean) => void            | Callback on read value change                          |
 
 ## Example
 
