@@ -16,6 +16,7 @@ interface Props extends ViewProps {
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
+  readonly isRead?: boolean
   onReadChange?: (read: boolean) => void
   onRead?: () => void
 }
@@ -37,11 +38,16 @@ const Agreement = ({
   headerProps = {},
   contentProps = {},
   footerProps = {},
+  isRead = false,
   onReadChange,
   onRead,
   ...props
 }: Props & HeaderType & ContentType) => {
-  const [read, setRead] = useState(false)
+  const [read, setRead] = useState(isRead)
+
+  useEffect(() => {
+    setRead(isRead)
+  }, [isRead])
 
   useEffect(() => {
     onReadChange?.(read)
