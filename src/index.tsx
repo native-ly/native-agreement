@@ -53,7 +53,7 @@ const Agreement = ({
 
   useEffect(() => {
     onReadChange?.(read)
-  }, [read])
+  }, [onReadChange, read])
 
   const { onScroll, ...contentRest } = contentProps
 
@@ -67,7 +67,7 @@ const Agreement = ({
 
       onScroll?.(e)
     },
-    [onScroll]
+    [onRead, onScroll, read]
   )
 
   return (
