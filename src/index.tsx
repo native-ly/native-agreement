@@ -47,7 +47,7 @@ const Agreement = ({
     if (isBottomReached(e.nativeEvent)) {
       setRead(true)
 
-      onRead?.() // TODO run only once?
+      onRead?.()
     }
 
     onScroll?.(e)
