@@ -17,6 +17,7 @@ interface Props extends ViewProps {
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
   onReadChange?: (read: boolean) => void
+  onRead?: () => void
 }
 
 const isBottomReached = ({
@@ -37,6 +38,7 @@ const Agreement = ({
   contentProps = {},
   footerProps = {},
   onReadChange,
+  onRead,
   ...props
 }: Props & HeaderType & ContentType) => {
   const [read, setRead] = useState(false)
@@ -48,8 +50,10 @@ const Agreement = ({
   const { onScroll, ...contentRest } = contentProps
 
   const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (isBottomReached(e.nativeEvent)) {
+    if (!read && isBottomReached(e.nativeEvent)) {
       setRead(true)
+
+      onRead?.()
     }
 
     onScroll?.(e)
