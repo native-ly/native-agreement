@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
@@ -26,6 +26,8 @@ const isBottomReached = ({
   return layoutMeasurement.height + contentOffset.y >= contentSize.height
 }
 
+type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
+
 const Agreement = ({
   renderHeader,
   renderContent,
@@ -41,13 +43,16 @@ const Agreement = ({
 
   const { onScroll, ...contentRest } = contentProps
 
-  const handleScroll = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    if (isBottomReached(e.nativeEvent)) {
-      setRead(true)
-    }
+  const handleScroll = useCallback<HandleScrollCallback>(
+    (e) => {
+      if (isBottomReached(e.nativeEvent)) {
+        setRead(true)
+      }
 
-    onScroll?.(e)
-  }
+      onScroll?.(e)
+    },
+    [onScroll]
+  )
 
   return (
     <View {...props}>
