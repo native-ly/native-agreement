@@ -6,6 +6,7 @@ import {
   ScrollView,
   NativeScrollEvent,
   NativeSyntheticEvent,
+  LayoutChangeEvent,
 } from 'react-native'
 
 import type { HeaderType } from './types/HeaderType'
@@ -30,6 +31,8 @@ const isBottomReached = ({
 }
 
 type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
+type HandleLayoutCallback = (e: LayoutChangeEvent) => void
+type HandleContentSizeChangeCallback = (w: number, h: number) => void
 
 const Agreement = ({
   renderHeader,
@@ -55,7 +58,14 @@ const Agreement = ({
     onReadChange?.(read)
   }, [onReadChange, read])
 
-  const { onScroll, ...contentRest } = contentProps
+  const [wrapperHeight, setWrapperHeight] = useState(0)
+
+  const {
+    onScroll,
+    onLayout,
+    onContentSizeChange,
+    ...contentRest
+  } = contentProps
 
   const handleScroll = useCallback<HandleScrollCallback>(
     (e) => {
@@ -70,13 +80,38 @@ const Agreement = ({
     [onRead, onScroll, read]
   )
 
+  const handleLayout = useCallback<HandleLayoutCallback>(
+    (e) => {
+      const { height } = e.nativeEvent.layout
+
+      setWrapperHeight(height)
+
+      onLayout?.(e)
+    },
+    [onLayout]
+  )
+
+  const handleContentSizeChange = useCallback<HandleContentSizeChangeCallback>(
+    (w, h) => {
+      setRead(h < wrapperHeight)
+
+      onContentSizeChange?.(w, h)
+    },
+    [onContentSizeChange, wrapperHeight]
+  )
+
   return (
     <View {...props}>
       {(renderHeader || headerComponent) && (
         <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
       )}
 
-      <ScrollView onScroll={handleScroll} {...contentRest}>
+      <ScrollView
+        onLayout={handleLayout}
+        onScroll={handleScroll}
+        onContentSizeChange={handleContentSizeChange}
+        {...contentRest}
+      >
         {renderContent?.(read) || contentComponent}
       </ScrollView>
 
