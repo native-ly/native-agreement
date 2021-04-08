@@ -76,7 +76,7 @@ const Agreement = ({
         <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
       )}
 
-      <ScrollView onScroll={handleScroll} {...contentRest}>
+      <ScrollView onScroll={handleScroll} bounces={false} {...contentRest}>
         {renderContent?.(read) || contentComponent}
       </ScrollView>
 
