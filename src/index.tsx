@@ -55,7 +55,7 @@ const Agreement = ({
     onReadChange?.(read)
   }, [onReadChange, read])
 
-  const { onScroll, ...contentRest } = contentProps
+  const { onScroll, scrollEventThrottle = 16, ...contentRest } = contentProps
 
   const handleScroll = useCallback<HandleScrollCallback>(
     (e) => {
@@ -76,7 +76,11 @@ const Agreement = ({
         <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
       )}
 
-      <ScrollView onScroll={handleScroll} {...contentRest}>
+      <ScrollView
+        onScroll={handleScroll}
+        scrollEventThrottle={scrollEventThrottle}
+        {...contentRest}
+      >
         {renderContent?.(read) || contentComponent}
       </ScrollView>
 
