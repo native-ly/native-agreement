@@ -1,6 +1,6 @@
 {
   "name": "native-agreement",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Make sure the user has read the agreement",
   "author": "Jakub Biesiada",
   "license": "MIT",
