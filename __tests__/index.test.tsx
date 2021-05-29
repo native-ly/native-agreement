@@ -28,6 +28,7 @@ describe('Agreement', () => {
   it('should enable Agree button after scroll content to bottom', () => {
     const onPress = jest.fn()
 
+    // TODO update
     const { getByText, getByTestId, queryByText } = render(
       <Agreement
         // contentProps={{

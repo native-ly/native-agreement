@@ -25,10 +25,10 @@
   "keywords": [
     "react",
     "react-native",
-    "agree",
+    "component",
     "read",
     "confirm",
-    "component"
+    "agree"
   ],
   "bugs": {
     "url": "https://github.com/native-ly/native-agreement/issues"

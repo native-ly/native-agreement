@@ -10,4 +10,13 @@ type HeaderComponentType = {
   readonly headerComponent: React.ReactNode
 }
 
-export type HeaderType = RenderHeaderType | HeaderComponentType
+// TODO rename
+type WithoutHeaderType = {
+  renderHeader?: (read: boolean) => React.ReactNode
+  readonly headerComponent?: React.ReactNode
+}
+
+export type HeaderType =
+  | RenderHeaderType
+  | HeaderComponentType
+  | WithoutHeaderType
