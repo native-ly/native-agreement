@@ -79,5 +79,8 @@
       "npm run prettier",
       "npm run lint"
     ]
+  },
+  "dependencies": {
+    "native-smart-scroll-container": "^1.0.0"
   }
 }

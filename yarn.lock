@@ -7108,6 +7108,11 @@ nanomatch@^1.2.9:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+native-smart-scroll-container@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/native-smart-scroll-container/-/native-smart-scroll-container-1.0.0.tgz#7ccf05f80c615318085f6f3f0ffab5998cad6558"
+  integrity sha512-d97ESFtrWw4RbR/NzbzneaKDot7XHIRwHYhnpRMGdDqnTbQym7lZaD7U0up0W3WNuPXs40FDHi0z00M6rc3B/w==
+
 natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
