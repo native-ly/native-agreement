@@ -12,22 +12,21 @@ import type { HeaderType } from './types/HeaderType'
 import type { ContentType } from './types/ContentType'
 
 interface Props extends ViewProps {
-  renderFooter?: (read: boolean) => React.ReactNode
+  readonly renderFooter?: (read: boolean) => React.ReactNode
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
   readonly isRead?: boolean
-  onReadChange?: (read: boolean) => void
-  onRead?: () => void
+  readonly onReadChange?: (read: boolean) => void
+  readonly onRead?: () => void
 }
 
 const isBottomReached = ({
   layoutMeasurement,
   contentOffset,
   contentSize,
-}: NativeScrollEvent) => {
-  return layoutMeasurement.height + contentOffset.y >= contentSize.height
-}
+}: NativeScrollEvent) =>
+  layoutMeasurement.height + contentOffset.y >= contentSize.height
 
 type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
 
