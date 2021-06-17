@@ -3,10 +3,10 @@ import {
   ViewProps,
   ScrollViewProps,
   View,
-  ScrollView,
   NativeScrollEvent,
   NativeSyntheticEvent,
 } from 'react-native'
+import SmartScrollContainer from 'native-smart-scroll-container'
 
 import type { HeaderType } from './types/HeaderType'
 import type { ContentType } from './types/ContentType'
@@ -25,9 +25,8 @@ const isBottomReached = ({
   layoutMeasurement,
   contentOffset,
   contentSize,
-}: NativeScrollEvent) => {
-  return layoutMeasurement.height + contentOffset.y >= contentSize.height
-}
+}: NativeScrollEvent) =>
+  layoutMeasurement.height + contentOffset.y >= contentSize.height
 
 type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
 
@@ -76,13 +75,13 @@ const Agreement = ({
         <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
       )}
 
-      <ScrollView
+      <SmartScrollContainer
         onScroll={handleScroll}
         scrollEventThrottle={scrollEventThrottle}
         {...contentRest}
       >
         {renderContent?.(read) || contentComponent}
-      </ScrollView>
+      </SmartScrollContainer>
 
       {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}
     </View>
