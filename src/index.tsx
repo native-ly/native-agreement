@@ -12,13 +12,13 @@ import type { HeaderType } from './types/HeaderType'
 import type { ContentType } from './types/ContentType'
 
 interface Props extends ViewProps {
-  readonly renderFooter?: (read: boolean) => React.ReactNode
+  renderFooter?: (read: boolean) => React.ReactNode
   readonly headerProps?: ViewProps
   readonly contentProps?: ScrollViewProps
   readonly footerProps?: ViewProps
   readonly isRead?: boolean
-  readonly onReadChange?: (read: boolean) => void
-  readonly onRead?: () => void
+  onReadChange?: (read: boolean) => void
+  onRead?: () => void
 }
 
 const isBottomReached = ({
