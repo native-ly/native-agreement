@@ -1,21 +1,18 @@
 import React from 'react'
 
-type RenderHeaderType = {
+type RenderHeader = {
   renderHeader: (read: boolean) => React.ReactNode
   readonly headerComponent?: React.ReactNode
 }
 
-type HeaderComponentType = {
+type HeaderComponent = {
   renderHeader?: (read: boolean) => React.ReactNode
   readonly headerComponent: React.ReactNode
 }
 
-type HeaderLessType = {
+type HeaderLess = {
   renderHeader?: (read: boolean) => React.ReactNode
   readonly headerComponent?: React.ReactNode
 }
 
-export type HeaderType =
-  | RenderHeaderType
-  | HeaderComponentType
-  | HeaderLessType
+export type Header = RenderHeader | HeaderComponent | HeaderLess

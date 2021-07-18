@@ -1,13 +1,13 @@
 import React from 'react'
 
-type RenderContentType = {
+type RenderContent = {
   renderContent: (read: boolean) => React.ReactNode
   readonly contentComponent?: React.ReactNode
 }
 
-type ContentComponentType = {
+type ContentComponent = {
   renderContent?: (read: boolean) => React.ReactNode
   readonly contentComponent: React.ReactNode
 }
 
-export type ContentType = RenderContentType | ContentComponentType
+export type Content = RenderContent | ContentComponent

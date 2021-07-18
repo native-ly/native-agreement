@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import SmartScrollContainer from 'native-smart-scroll-container'
 
-import type { HeaderType } from './types/HeaderType'
-import type { ContentType } from './types/ContentType'
+import type { Header } from './types/Header'
+import type { Content } from './types/Content'
 
 interface Props extends ViewProps {
   renderFooter?: (read: boolean) => React.ReactNode
@@ -43,7 +43,7 @@ const Agreement = ({
   onReadChange,
   onRead,
   ...props
-}: Props & HeaderType & ContentType) => {
+}: Props & Header & Content) => {
   const [read, setRead] = useState(isRead)
 
   useEffect(() => {
