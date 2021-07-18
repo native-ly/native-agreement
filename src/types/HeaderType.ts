@@ -15,7 +15,4 @@ type HeaderLessType = {
   readonly headerComponent?: React.ReactNode
 }
 
-export type HeaderType =
-  | RenderHeaderType
-  | HeaderComponentType
-  | HeaderLessType
+export type HeaderType = RenderHeaderType | HeaderComponentType | HeaderLessType

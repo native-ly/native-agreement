@@ -4,6 +4,7 @@ import { render, fireEvent } from '@testing-library/react-native'
 
 import Agreement from '../src'
 
+// TODO? move to mocks
 const content = `
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed porttitor lacus quis sollicitudin malesuada. Etiam metus ipsum, facilisis et vulputate sit amet, pellentesque a arcu. Praesent sit amet viverra eros, vitae faucibus sapien. In eu nulla diam. Sed consequat mauris ut ultrices bibendum. Vivamus nec velit sem. Ut vestibulum velit eget justo feugiat luctus. Praesent tempor vel justo id euismod. Quisque at scelerisque lorem.
 
