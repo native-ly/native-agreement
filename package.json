@@ -13,8 +13,8 @@
     "test": "jest --coverage",
     "watch": "npm run build -- --watch",
     "watch:test": "npm run test -- --watch",
-    "lint": "eslint --fix 'src/**/*.tsx'",
-    "prettier": "prettier --write 'src/**/*.tsx'",
+    "lint": "eslint --fix 'src/**/*.{tsx,ts}'",
+    "prettier": "prettier --write 'src/**/*.{tsx,ts}'",
     "commit": "git-cz",
     "semantic-release": "semantic-release"
   },
@@ -34,6 +34,9 @@
     "url": "https://github.com/native-ly/native-agreement/issues"
   },
   "homepage": "https://github.com/native-ly/native-agreement#readme",
+  "dependencies": {
+    "native-smart-scroll-container": "^1.0.0"
+  },
   "devDependencies": {
     "@testing-library/jest-native": "^4.0.1",
     "@testing-library/react-native": "^7.2.0",
@@ -75,12 +78,9 @@
     }
   },
   "lint-staged": {
-    "src/**/*.tsx": [
+    "src/**/*.{tsx,ts}": [
       "npm run prettier",
       "npm run lint"
     ]
-  },
-  "dependencies": {
-    "native-smart-scroll-container": "^1.0.0"
   }
 }
