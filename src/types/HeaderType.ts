@@ -1,16 +1,16 @@
 import React from 'react'
 
-type RenderHeaderType = {
+interface RenderHeaderType {
   renderHeader: (read: boolean) => React.ReactNode
   readonly headerComponent?: React.ReactNode
 }
 
-type HeaderComponentType = {
+interface HeaderComponentType {
   renderHeader?: (read: boolean) => React.ReactNode
   readonly headerComponent: React.ReactNode
 }
 
-type NoHeaderType = {
+interface NoHeaderType {
   renderHeader?: (read: boolean) => React.ReactNode
   readonly headerComponent?: React.ReactNode
 }
