@@ -27,7 +27,7 @@ $ yarn add native-agreement
 
 ## Options
 
-Props extends ViewProps
+Props extends [ViewProps](https://reactnative.dev/docs/view#props)
 
 | Name             | Type                               | Description                                            |
 | ---------------- | ---------------------------------- | ------------------------------------------------------ |
