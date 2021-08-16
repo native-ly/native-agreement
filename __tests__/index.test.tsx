@@ -26,7 +26,7 @@ describe('Agreement', () => {
     },
   }
 
-  it.skip('should enable Agree button after scroll content to bottom', () => {
+  it.skip('should enable the Agree button after scroll the content to bottom', () => {
     const onPress = jest.fn()
 
     // TODO update
