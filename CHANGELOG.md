@@ -1,13 +1,13 @@
-# native-agreement Changelog
+# Native Agreement Changelog
 
 ## 1.0.1 (2021-04-26)
 
-#### Bug Fix
+### Bug Fix
 
 - improved scroll precision
 
 ## 1.0.0 (2021-04-07)
 
-#### New Feature
+### New Feature
 
-- added `Agreement` component
+- added the `Agreement` component

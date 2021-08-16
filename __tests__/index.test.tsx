@@ -53,4 +53,11 @@ describe('Agreement', () => {
 
     expect(onPress).toHaveBeenCalledTimes(1)
   })
+
+  it.todo('headerComponent')
+  it.todo('contentComponent')
+  it.todo('headerComponent & render')
+  it.todo('contentComponent & render')
+  it.todo('no header, footer')
+  it.todo('resize')
 })
