@@ -56,7 +56,7 @@ Props extends [ViewProps](https://reactnative.dev/docs/view#props)
 
 ```js
 import React, { useState } from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Button } from 'react-native'
 import NativeAgreement from 'native-agreement'
 
 const App = () => {
