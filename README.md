@@ -38,6 +38,9 @@ import NativeAgreement from 'native-agreement'
 
 Props extends [ViewProps](https://reactnative.dev/docs/view#props)
 
+<!-- TODO add defaults -->
+<!-- TODO add links to prop types docs -->
+
 | Name             | Type                               | Description                                            |
 | ---------------- | ---------------------------------- | ------------------------------------------------------ |
 | renderHeader     | (read: boolean) => React.ReactNode | Function to render component inside the header         |
