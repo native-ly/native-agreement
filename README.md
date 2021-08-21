@@ -41,19 +41,19 @@ Props extends [ViewProps](https://reactnative.dev/docs/view#props)
 <!-- TODO add defaults -->
 <!-- TODO add links to prop types docs -->
 
-| Name             | Type                               | Description                                            |
-| ---------------- | ---------------------------------- | ------------------------------------------------------ |
-| renderHeader     | (read: boolean) => React.ReactNode | Function to render component inside the header         |
-| renderContent    | (read: boolean) => React.ReactNode | Function to render component inside the scroll section |
-| renderFooter     | (read: boolean) => React.ReactNode | Function to render component inside the footer         |
-| headerComponent  | React.ReactNode                    | Component to be rendered inside the header             |
-| contentComponent | React.ReactNode                    | Component to be rendered inside the scroll section     |
-| headerProps      | ViewProps                          | Props for the header                                   |
-| contentProps     | ScrollViewProps                    | Props for the scroll section                           |
-| footerProps      | ViewProps                          | Props for the footer                                   |
-| onRead           | () => void                         | Callback on agreement read                             |
-| onReadChange     | (read: boolean) => void            | Callback on read value change                          |
-| isRead           | boolean                            | Set and reset read value from outside the component    |
+| Name             | Type                                                             | Description                                            |
+| ---------------- | ---------------------------------------------------------------- | ------------------------------------------------------ |
+| renderHeader     | (read: boolean) => React.ReactNode                               | Function to render component inside the header         |
+| renderContent    | (read: boolean) => React.ReactNode                               | Function to render component inside the scroll section |
+| renderFooter     | (read: boolean) => React.ReactNode                               | Function to render component inside the footer         |
+| headerComponent  | React.ReactNode                                                  | Component to be rendered inside the header             |
+| contentComponent | React.ReactNode                                                  | Component to be rendered inside the scroll section     |
+| headerProps      | [ViewProps](https://reactnative.dev/docs/view#props)             | Props for the header                                   |
+| contentProps     | [ScrollViewProps](https://reactnative.dev/docs/scrollview#props) | Props for the scroll section                           |
+| footerProps      | [ViewProps](https://reactnative.dev/docs/view#props)             | Props for the footer                                   |
+| onRead           | () => void                                                       | Callback on agreement read                             |
+| onReadChange     | (read: boolean) => void                                          | Callback on read value change                          |
+| isRead           | boolean                                                          | Set and reset read value from outside the component    |
 
 ## Example
 
