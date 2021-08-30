@@ -31,11 +31,7 @@ const isBottomReached = ({
 type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
 
 const Agreement = ({
-  renderHeader,
-  renderContent,
   renderFooter,
-  headerComponent,
-  contentComponent,
   headerProps = {},
   contentProps = {},
   footerProps = {},
@@ -71,8 +67,10 @@ const Agreement = ({
 
   return (
     <View {...props}>
-      {(renderHeader || headerComponent) && (
-        <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
+      {('renderHeader' in props || 'headerComponent' in props) && (
+        <View {...headerProps}>
+          {props.renderHeader?.(read) || props.headerComponent}
+        </View>
       )}
 
       <SmartScrollContainer
@@ -80,7 +78,7 @@ const Agreement = ({
         scrollEventThrottle={scrollEventThrottle}
         {...contentRest}
       >
-        {renderContent?.(read) || contentComponent}
+        {props.renderContent?.(read) || props.contentComponent}
       </SmartScrollContainer>
 
       {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}
