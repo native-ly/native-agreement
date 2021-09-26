@@ -42,6 +42,7 @@ const Agreement = ({
   isRead = false,
   onReadChange,
   onRead,
+  children,
   ...props
 }: Props & HeaderType & ContentType) => {
   const [read, setRead] = useState(isRead)
@@ -71,8 +72,8 @@ const Agreement = ({
 
   return (
     <View {...props}>
-      {(renderHeader || headerComponent) && (
-        <View {...headerProps}>{renderHeader?.(read) || headerComponent}</View>
+      {(renderHeader ?? headerComponent) && (
+        <View {...headerProps}>{renderHeader?.(read) ?? headerComponent}</View>
       )}
 
       <SmartScrollContainer
@@ -80,7 +81,7 @@ const Agreement = ({
         scrollEventThrottle={scrollEventThrottle}
         {...contentRest}
       >
-        {renderContent?.(read) || contentComponent}
+        {children ?? renderContent?.(read) ?? contentComponent}
       </SmartScrollContainer>
 
       {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}
