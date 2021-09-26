@@ -67,9 +67,9 @@ const Agreement = ({
 
   return (
     <View {...props}>
-      {('renderHeader' in props || 'headerComponent' in props) && (
+      {('renderHeader' in props ?? 'headerComponent' in props) && (
         <View {...headerProps}>
-          {props.renderHeader?.(read) || props.headerComponent}
+          {props.renderHeader?.(read) ?? props.headerComponent}
         </View>
       )}
 
@@ -78,7 +78,7 @@ const Agreement = ({
         scrollEventThrottle={scrollEventThrottle}
         {...contentRest}
       >
-        {props.renderContent?.(read) || props.contentComponent}
+        {children ?? renderContent?.(read) ?? contentComponent}
       </SmartScrollContainer>
 
       {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}

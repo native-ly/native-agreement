@@ -8,4 +8,11 @@ interface ContentComponentType {
   readonly contentComponent: React.ReactNode
 }
 
-export type ContentType = RenderContentType | ContentComponentType
+interface ContentChildrenType {
+  readonly children: React.ReactNode
+}
+
+export type ContentType =
+  | RenderContentType
+  | ContentComponentType
+  | ContentChildrenType
