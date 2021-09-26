@@ -8,4 +8,4 @@ interface HeaderComponentType {
   readonly headerComponent: React.ReactNode
 }
 
-export type HeaderType = RenderHeaderType | HeaderComponentType | {}
+export type HeaderType = RenderHeaderType | HeaderComponentType

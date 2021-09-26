@@ -1,10 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState, useMemo } from 'react'
 import {
   ViewProps,
   ScrollViewProps,
   View,
   NativeScrollEvent,
-  NativeSyntheticEvent,
 } from 'react-native'
 import SmartScrollContainer from 'native-smart-scroll-container'
 
@@ -28,7 +27,7 @@ const isBottomReached = ({
 }: NativeScrollEvent) =>
   layoutMeasurement.height + contentOffset.y >= contentSize.height
 
-type HandleScrollCallback = (e: NativeSyntheticEvent<NativeScrollEvent>) => void
+type HandleScrollCallback = NonNullable<ScrollViewProps['onScroll']>
 
 const Agreement = ({
   renderFooter,
@@ -65,20 +64,38 @@ const Agreement = ({
     [onRead, onScroll, read]
   )
 
+  const header = useMemo(() => {
+    if ('renderHeader' in props) {
+      return props.renderHeader?.(read)
+    }
+
+    if ('headerComponent' in props) {
+      return props.headerComponent
+    }
+  }, [props, read])
+
+  const content = useMemo(() => {
+    if ('children' in props) {
+      return props.children
+    }
+
+    if ('renderContent' in props) {
+      return props.renderContent?.(read)
+    }
+
+    return props.contentComponent
+  }, [props, read])
+
   return (
     <View {...props}>
-      {('renderHeader' in props ?? 'headerComponent' in props) && (
-        <View {...headerProps}>
-          {props.renderHeader?.(read) ?? props.headerComponent}
-        </View>
-      )}
+      {header && <View {...headerProps}>{header}</View>}
 
       <SmartScrollContainer
         onScroll={handleScroll}
         scrollEventThrottle={scrollEventThrottle}
         {...contentRest}
       >
-        {children ?? renderContent?.(read) ?? contentComponent}
+        {content}
       </SmartScrollContainer>
 
       {renderFooter && <View {...footerProps}>{renderFooter(read)}</View>}
