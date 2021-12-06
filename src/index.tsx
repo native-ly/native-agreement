@@ -20,6 +20,8 @@ interface Props extends ViewProps {
   onRead?: () => void
 }
 
+type HandleScrollCallback = NonNullable<ScrollViewProps['onScroll']>
+
 const isBottomReached = ({
   layoutMeasurement,
   contentOffset,
@@ -49,7 +51,7 @@ const Agreement = ({
 
   const { onScroll, scrollEventThrottle = 16, ...contentRest } = contentProps
 
-  const handleScroll: NonNullable<ScrollViewProps['onScroll']> = useCallback(
+  const handleScroll = useCallback<HandleScrollCallback>(
     (e) => {
       if (!read && isBottomReached(e.nativeEvent)) {
         setRead(true)
