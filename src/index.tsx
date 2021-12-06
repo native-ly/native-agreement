@@ -27,8 +27,6 @@ const isBottomReached = ({
 }: NativeScrollEvent) =>
   layoutMeasurement.height + contentOffset.y >= contentSize.height
 
-type HandleScrollCallback = NonNullable<ScrollViewProps['onScroll']>
-
 const Agreement = ({
   renderFooter,
   headerProps = {},
@@ -51,19 +49,17 @@ const Agreement = ({
 
   const { onScroll, scrollEventThrottle = 16, ...contentRest } = contentProps
 
-  const handleScroll = useCallback<HandleScrollCallback>(
-    (e) => {
-      if (!read && isBottomReached(e.nativeEvent)) {
-        setRead(true)
+  const handleScroll: NonNullable<ScrollViewProps['onScroll']> = (e) => {
+    if (!read && isBottomReached(e.nativeEvent)) {
+      setRead(true)
 
-        onRead?.()
-      }
+      onRead?.()
+    }
 
-      onScroll?.(e)
-    },
-    [onRead, onScroll, read]
-  )
+    onScroll?.(e)
+  }
 
+  // TODO? remove useMemo
   const header = useMemo(() => {
     if ('renderHeader' in props) {
       return props.renderHeader?.(read)
@@ -74,6 +70,7 @@ const Agreement = ({
     }
   }, [props, read])
 
+  // TODO? remove useMemo
   const content = useMemo(() => {
     if ('children' in props) {
       return props.children
