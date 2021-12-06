@@ -49,17 +49,19 @@ const Agreement = ({
 
   const { onScroll, scrollEventThrottle = 16, ...contentRest } = contentProps
 
-  const handleScroll: NonNullable<ScrollViewProps['onScroll']> = (e) => {
-    if (!read && isBottomReached(e.nativeEvent)) {
-      setRead(true)
+  const handleScroll: NonNullable<ScrollViewProps['onScroll']> = useCallback(
+    (e) => {
+      if (!read && isBottomReached(e.nativeEvent)) {
+        setRead(true)
 
-      onRead?.()
-    }
+        onRead?.()
+      }
 
-    onScroll?.(e)
-  }
+      onScroll?.(e)
+    },
+    [onRead, onScroll, read]
+  )
 
-  // TODO? remove useMemo
   const header = useMemo(() => {
     if ('renderHeader' in props) {
       return props.renderHeader?.(read)
@@ -70,7 +72,6 @@ const Agreement = ({
     }
   }, [props, read])
 
-  // TODO? remove useMemo
   const content = useMemo(() => {
     if ('children' in props) {
       return props.children
